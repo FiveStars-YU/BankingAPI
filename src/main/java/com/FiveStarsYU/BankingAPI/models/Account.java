@@ -9,5 +9,8 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    private Enum type;
+    private String nickname;
+
 
 }
