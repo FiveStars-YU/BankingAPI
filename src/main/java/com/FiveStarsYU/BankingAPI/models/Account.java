@@ -9,10 +9,13 @@ public class Account {
     @Column(name = "accountId", nullable = false)
     private Long id;
 
-    private Enum type;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
     private String nickname;
     private Integer rewards;
     private Double balance;
+    @ManyToOne
+    @JoinColumn(name = "customerId")
     private Customer customer;
 
     public Account() {
@@ -26,12 +29,12 @@ public class Account {
         this.id = id;
     }
 
-    public Enum getType() {
-        return type;
+    public AccountType getAccountType() {
+        return accountType;
     }
 
-    public void setType(Enum type) {
-        this.type = type;
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     public String getNickname() {
@@ -70,7 +73,7 @@ public class Account {
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", type=" + type +
+                ", accountType=" + accountType +
                 ", nickname='" + nickname + '\'' +
                 ", rewards=" + rewards +
                 ", balance=" + balance +
