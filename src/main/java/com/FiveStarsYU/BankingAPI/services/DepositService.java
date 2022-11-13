@@ -23,7 +23,7 @@ public class DepositService {
     private AccountRepo accountRepo;
 
     public Deposit createDeposit(Deposit deposit, Long accountId){
-        accountServices.ge
+        accountServices.getAccountByAccountId()
     }
     public Iterable<Deposit> getAllDepositsByAccountId(Long accountId){
         return depositRepo.getAllDepositByAccountId(accountId);
