@@ -3,8 +3,8 @@ package com.FiveStarsYU.BankingAPI.services;
 import com.FiveStarsYU.BankingAPI.models.Account;
 import com.FiveStarsYU.BankingAPI.models.Customer;
 import com.FiveStarsYU.BankingAPI.repository.AccountRepo;
+import com.FiveStarsYU.BankingAPI.repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,13 +20,12 @@ public class AccountServices {
 
     //check customer
     public boolean customerCheck(Long accountId){
-
         Customer customer = customerRepo.findById(accountId).orElse(null);
         return customer != null;
     }
 
+    //check account
     public boolean accountCheck(Long accountId){
-
         Account account = getAccountByAccountId(accountId).orElse(null);
         return account != null;
     }
@@ -36,7 +35,7 @@ public class AccountServices {
         return accountRepo.findAll();
     }
 
-    //get all accounts by account id
+    //get account by account id
     public Optional<Account> getAccountByAccountId(Long accountId){
         return accountRepo.findById(accountId);
     }
@@ -53,13 +52,13 @@ public class AccountServices {
 
     //update account by account id
 
-    public void updateAccountByAccountId(Long accountId, Account account){
-        verifyAccount(accountId);
+    public void updateAccount(Account account){
+        //verify account?
         accountRepo.save(account);
     }
 
     //delete account by account id
-    public void deleteAccountbByAccountId(Long accountId){
+    public void deleteAccountByAccountId(Long accountId){
         accountRepo.deleteById(accountId);
     }
 
