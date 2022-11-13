@@ -16,10 +16,10 @@ public class DepositController {
     @Autowired
     private DepositService depositService;
 
-    @PostMapping("/deposit/{customerId}/deposit")
-    public void createDeposit(@PathVariable Long customerId, @RequestBody Customer customer){
-        depositService.createDeposit(accountId,deposit);
-    }
+   // @PostMapping("/deposit/{customerId}/deposit")
+   // public void createDeposit(@PathVariable Long customerId, @RequestBody Customer customer){
+     //   depositService.createDeposit(accountId,deposit);
+  //  }
     @GetMapping("/deposit/{accountId}/deposit")
     public Iterable<Deposit> getAllDepositsByAccountId(@PathVariable Long accountId){
         return depositService.getAllDepositsByAccountId(accountId);

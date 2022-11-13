@@ -16,15 +16,15 @@ public class DepositService {
     @Autowired
     private DepositRepo depositRepo;
 
-    @Autowired
-    private AccountServices accountServices;
+  //  @Autowired
+   // private AccountServices accountServices;
 
     @Autowired
     private AccountRepo accountRepo;
 
-    public Deposit createDeposit(Deposit deposit, Long accountId){
-        accountServices.getAccountByAccountId()
-    }
+   // public Deposit createDeposit(Deposit deposit, Long accountId){
+    //    accountServices.getAccountByAccountId()
+   // }
     public Iterable<Deposit> getAllDepositsByAccountId(Long accountId){
         return depositRepo.getAllDepositByAccountId(accountId);
     }
@@ -38,6 +38,6 @@ public class DepositService {
     public void updateDeposit(Long depositId, Deposit deposit){
         depositRepo.findById(depositId).map(account ->{
 
-        })
+       })
     }
 }
