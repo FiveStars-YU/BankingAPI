@@ -1,5 +1,6 @@
 package com.FiveStarsYU.BankingAPI.services;
 
+import com.FiveStarsYU.BankingAPI.models.Account;
 import com.FiveStarsYU.BankingAPI.models.Withdrawal;
 import com.FiveStarsYU.BankingAPI.repository.AccountRepo;
 import com.FiveStarsYU.BankingAPI.repository.WithdrawalRepository;
@@ -15,14 +16,17 @@ public class WithdrawalServices {
     @Autowired
     private WithdrawalRepository withdrawalRepository;
     @Autowired
-    AccountRepo accountRepo;
+    private AccountRepo accountRepo;
+    @Autowired
+    private AccountServices accountServices;
 
-    public void verifyWithdrawal(Long withdrawalId){
-        Withdrawal withdrawal = withdrawalRepository.findById(withdrawalId).orElse(null);
-    }
-
-    public Withdrawal createWithdrawal(Withdrawal withdrawal){
-       return withdrawalRepository.save(withdrawal);
+    public Withdrawal createWithdrawal(Long accountId,Withdrawal withdrawal){
+        Optional<Account> account = accountServices.getAccountByAccountId(accountId);
+        Double accountBalance = account.get().getBalance();
+        Double withdrawalAmount = withdrawal.getAmount();
+        Double total = accountBalance - withdrawalAmount;
+        account.get().setBalance(total);
+        return withdrawalRepository.save(withdrawal);
     }
 
     public Optional<Withdrawal> getWithdrawalById(Long withdrawalId){
@@ -35,11 +39,28 @@ public class WithdrawalServices {
 
 
     public void updateWithdrawal(Long withdrawalId, Withdrawal withdrawal) {
-        verifyWithdrawal(withdrawalId);
+        Account account = accountServices.getAccountByAccountId(withdrawal.getPayerId()).orElse(null);
+        Double oldWithdrawal = withdrawalRepository.findById(withdrawalId).get().getAmount();
+        Double balance = account.getBalance();
+        Double oldBalance = balance + oldWithdrawal;
+        account.setBalance(oldBalance);
+
+        Double withdrawalAmount = withdrawal.getAmount();
+        account.setBalance(oldBalance - withdrawalAmount);
         withdrawalRepository.save(withdrawal);
     }
 
-    public void deleteWithdrawal(Long withdrawalId){
+    public boolean accountCheck(Long accountId){
+        Account account = accountRepo.findById(accountId).orElse(null);
+        return account != null;
+    }
+
+    public boolean withdrawalCheck(Long withdrawalId){
+        Withdrawal withdrawal = withdrawalRepository.findById(withdrawalId).orElse(null);
+        return withdrawal != null;
+    }
+
+    public void deleteWithdrawalById(Long withdrawalId){
         withdrawalRepository.deleteById(withdrawalId);
     }
 }
