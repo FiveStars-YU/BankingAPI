@@ -27,8 +27,8 @@ public class CustomerService {
     private AccountServices accountServices;
 
 
-    public void addCustomer(Customer customer){
-        customerRepo.save(customer);
+    public Customer addCustomer(Customer customer){
+        return customerRepo.save(customer);
     }
 
     public Iterable<Customer> getAllCustomer(){

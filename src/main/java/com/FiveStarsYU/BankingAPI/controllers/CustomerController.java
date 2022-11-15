@@ -24,9 +24,9 @@ public class CustomerController {
     private AccountServices accountServices;
 
     @PostMapping("/customers")
-    public ResponseEntity<?> addCustomer(@PathVariable Long customerId,@RequestBody Account account){
-    if(accountServices.customerCheck(customerId)){
-        CodeMessageData successfullResponse = new CodeMessageData(200,"Success",  accountServices.createAccount(account));
+    public ResponseEntity<?> addCustomer(Long id,@RequestBody Customer customer){
+    if(accountServices.customerCheck(id)){
+        CodeMessageData successfullResponse = new CodeMessageData(200,"Success", customerService.addCustomer(customer));
         return new ResponseEntity<>(successfullResponse, HttpStatus.OK);
     }
        CodeMessage failedResponse= new CodeMessage(404,"Error");
