@@ -23,7 +23,7 @@ public class CustomerController {
     @Autowired
     private AccountServices accountServices;
 
-    @PostMapping("/customer")
+    @PostMapping("/customers")
     public ResponseEntity<?> addCustomer(@PathVariable Long customerId,@RequestBody Account account){
     if(accountServices.customerCheck(customerId)){
         CodeMessageData successfullResponse = new CodeMessageData(200,"Success",  accountServices.createAccount(account));
@@ -46,7 +46,7 @@ public class CustomerController {
         return new ResponseEntity<>(failedResponse,HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/customers/{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable Long id){
         Optional<Customer> customer = customerService.getCustomerById(id);
         if (customer.isEmpty()){
@@ -67,12 +67,12 @@ public class CustomerController {
         return new ResponseEntity<>(successfullResponse,HttpStatus.OK);
     }
 
-    @PutMapping("/customer/{id}")
+    @PutMapping("/customers/{id}")
     public void updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
 
          customerService.updateCustomer(customer,id);
     }
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/customers/{id}")
     public void deleteCustomerById(@PathVariable Long id){
 
         customerService.deleteCustomerById(id);
