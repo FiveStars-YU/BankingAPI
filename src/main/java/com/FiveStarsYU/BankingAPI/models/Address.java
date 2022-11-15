@@ -7,7 +7,6 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "addressId", nullable = false)
     private Long id;
 
     private String streetNumber;
