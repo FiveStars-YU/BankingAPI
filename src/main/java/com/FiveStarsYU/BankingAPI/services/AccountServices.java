@@ -37,6 +37,7 @@ public class AccountServices {
 
     //get account by account id
     public Optional<Account> getAccountByAccountId(Long accountId){
+
         return accountRepo.findById(accountId);
     }
 
@@ -47,6 +48,7 @@ public class AccountServices {
 
     //create an account
     public Account createAccount(Account account){
+
         return accountRepo.save(account);
     }
 

@@ -28,6 +28,7 @@ public class CustomerService {
 
 
     public void addCustomer(Customer customer){
+
         customerRepo.save(customer);
     }
 
@@ -36,6 +37,7 @@ public class CustomerService {
     }
 
     public Optional<Customer> getCustomerById(Long id){
+
         return customerRepo.findById(id);
     }
 
