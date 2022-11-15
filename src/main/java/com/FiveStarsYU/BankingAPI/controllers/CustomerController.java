@@ -22,15 +22,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/customers")
-    public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
 
-        try {
-            CodeMessageData response = new CodeMessageData(200, "Customer account created", customerService.createCustomer(customer));
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (Exception e) {
-            CodeMessage error = new CodeMessage(404, "Error creating customer");
-            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping("/customers")
