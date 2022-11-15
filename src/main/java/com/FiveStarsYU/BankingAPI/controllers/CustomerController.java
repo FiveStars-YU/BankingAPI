@@ -24,13 +24,7 @@ public class CustomerController {
     @PostMapping("/customers")
     public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
 
-        try {
-            CodeMessageData response = new CodeMessageData(200, "Customer account created", customerService.createCustomer(customer));
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (Exception e) {
-            CodeMessage error = new CodeMessage(404, "Error creating customer");
-            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-        }
+
     }
 
     @GetMapping("/customers")
@@ -45,16 +39,10 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/accounts/{account_id}/customer")
-    public ResponseEntity<?> getCustomerByAccount(@PathVariable Long account_id) {
-        Customer p = customerService.getCustomerByAccountId(account_id).orElse(null);
-        if (p == null) {
-            CodeMessage error = new CodeMessage(0, "error getting customer");
-            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+
         }
 
-        CodeMessageData response = new CodeMessageData(200, "Success", p);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
     @GetMapping("/customers/{id}")
