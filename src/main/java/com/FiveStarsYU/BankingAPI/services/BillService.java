@@ -1,6 +1,8 @@
 package com.FiveStarsYU.BankingAPI.services;
 
+import com.FiveStarsYU.BankingAPI.models.Account;
 import com.FiveStarsYU.BankingAPI.models.Bill;
+import com.FiveStarsYU.BankingAPI.repository.AccountRepo;
 import com.FiveStarsYU.BankingAPI.repository.BillRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,23 +17,21 @@ public class BillService {
 
     @Autowired
     private BillRepo billRepo;
+    @Autowired
+    AccountRepo accountRepo;
 
-    public void verifyPoll(Long billId) {
-        Bill bill = billRepo.findById(billId).orElse(null);
-    }
+
 
 
     public List<Bill> getAllBillsForASpecificAccount(Long id) {
         return billRepo.getAllBillsForASpecificAccount(id);
     }
     public ResponseEntity<?> getBill(Long billId) {
-        //verify bill id
         Optional<Bill> p = billRepo.findById(billId);
         return new ResponseEntity<> (p, HttpStatus.OK);
     }
 
     public List<Bill> getAllBillForOneCustomer(Long customerId) {
-        //verify customer id
         List<Long> accountId = billRepo.getAccountIdThatMatchesCustomerId(customerId); //Getting the account that is assigned to a customer's id
         return billRepo.getAllBillsByAccountId(accountId);
 
@@ -41,16 +41,24 @@ public class BillService {
         return billRepo.save(bill);
     }
 
-    public void updateBill(Bill bill, Long billId) {
-        //verify bill id
+    public void updateBill(Bill bill) {
         billRepo.save(bill);
     }
     public void deleteBill(Long billId) {
-        //verify bill id
         billRepo.deleteById(billId);
     }
 
+    public boolean accountCheck(Long accountId){
 
+        Account account = accountRepo.findById(accountId).orElse(null);
+        return account != null;
+    }
+
+    public Bill billCheck(Long billId){
+
+        Bill bill = billRepo.findById(billId).orElse(null);
+        return bill;
+    }
 
 }
 

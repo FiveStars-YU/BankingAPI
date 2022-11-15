@@ -66,7 +66,7 @@ public class BillController {
             return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
         }
         billService.deleteBill(billId);
-        return null;
+        return new ResponseEntity<>("Bill with ID: " + billId + " has been deleted.", HttpStatus.OK);
     }
 }
 
