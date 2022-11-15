@@ -1,9 +1,12 @@
 package com.FiveStarsYU.BankingAPI.services;
 
 
+import com.FiveStarsYU.BankingAPI.models.Account;
 import com.FiveStarsYU.BankingAPI.models.Address;
 import com.FiveStarsYU.BankingAPI.models.Customer;
 import com.FiveStarsYU.BankingAPI.repository.CustomerRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,31 +18,34 @@ import java.util.Optional;
 public class CustomerService {
 
 
-    @Autowired
-    CustomerRepo customerRepo;
 
-//    public void verifyCustomer(Long id){
-//        Customer customer= customerRepo.findById(id).orElse(null);
-//    }
+
+    @Autowired
+    private CustomerRepo customerRepo;
+
+    @Autowired
+    private AccountServices accountServices;
+
 
     public void addCustomer(Customer customer){
         customerRepo.save(customer);
     }
 
-    public ResponseEntity<Iterable<Customer>> getAllCustomer(){
-        Iterable<Customer> allCustomer= customerRepo.findAll();
-        return new ResponseEntity<>(allCustomer, HttpStatus.OK);
+    public Iterable<Customer> getAllCustomer(){
+        return customerRepo.findAll();
     }
 
-
     public Optional<Customer> getCustomerById(Long id){
-
         return customerRepo.findById(id);
     }
 
-    public ResponseEntity<?> updateCustomer(Customer customer, Long id) {
-        Customer c = customerRepo.save(customer);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public Optional<Customer> getCustomerByAccountId(Long accountId){
+        Long customerId= accountServices.getAccountByAccountId(accountId).get().getId();
+        return customerRepo.findById(customerId);
+    }
+
+    public void updateCustomer(Customer customer) {
+        customerRepo.save(customer);
     }
 
     public void deleteCustomerById(Long id) {
@@ -47,6 +53,10 @@ public class CustomerService {
         customerRepo.deleteById(id);
     }
 
+    public boolean checkCustomerById(Long customerId){
+        Customer c= customerRepo.findById(customerId).orElse(null);
+        return c != null;
+    }
 
 
 }
