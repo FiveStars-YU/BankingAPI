@@ -7,7 +7,6 @@ public class Deposit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "depositId", nullable = false)
     private Long id;
     private String type;
     private String transactionDate;

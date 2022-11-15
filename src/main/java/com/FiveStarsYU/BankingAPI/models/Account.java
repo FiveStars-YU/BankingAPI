@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "accountId", nullable = false)
     private Long id;
 
     @Enumerated(EnumType.STRING)

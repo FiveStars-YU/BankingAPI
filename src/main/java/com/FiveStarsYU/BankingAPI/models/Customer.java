@@ -18,8 +18,7 @@ public class Customer {
 
     private String lastName;
 
-    @ManyToOne
-    @JoinColumn(name="addressId")
+    @OneToMany
     private Set<Address> addresses;
 
     public Customer() {

@@ -56,7 +56,7 @@ public class CustomerController {
         CodeMessageData successfullResponse = new CodeMessageData(200,"Success", customer);
         return new ResponseEntity<>(successfullResponse,HttpStatus.OK);
     }
-    @GetMapping("customers/{customerId}/accounts")
+    @GetMapping("/accounts/{accountId}/customer")
     public ResponseEntity<?> getCustomersAccounts(@PathVariable Long accountId){
         Customer customer=customerService.getCustomerByAccountId(accountId).orElse(null);
         if(customer.equals(null)){
