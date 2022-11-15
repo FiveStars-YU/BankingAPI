@@ -67,12 +67,12 @@ public class CustomerController {
         return new ResponseEntity<>(successfullResponse,HttpStatus.OK);
     }
 
-    @PutMapping("/customer/{id}")
+    @PutMapping("/customers/{id}")
     public void updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
 
          customerService.updateCustomer(customer,id);
     }
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/customers/{id}")
     public void deleteCustomerById(@PathVariable Long id){
 
         customerService.deleteCustomerById(id);

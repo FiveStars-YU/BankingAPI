@@ -1,5 +1,4 @@
 package com.FiveStarsYU.BankingAPI.controllers;
-
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeData;
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeMessage;
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeMessageData;
@@ -86,3 +85,4 @@ public class DepositController {
         }
     }
 }
+
