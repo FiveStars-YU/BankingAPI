@@ -44,7 +44,7 @@ public class CustomerService {
         return customerRepo.findById(customerId);
     }
 
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(Customer customer, Long id) {
         customerRepo.save(customer);
     }
 

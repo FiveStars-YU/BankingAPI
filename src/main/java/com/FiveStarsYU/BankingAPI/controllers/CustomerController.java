@@ -26,7 +26,7 @@ public class CustomerController {
     @PostMapping("/customer")
     public ResponseEntity<?> addCustomer(@PathVariable Long customerId,@RequestBody Account account){
     if(accountServices.customerCheck(customerId)){
-        CodeMessageData successfullResponse = new CodeMessageData(200,"Success",  accountServices.createAccount(account);
+        CodeMessageData successfullResponse = new CodeMessageData(200,"Success",  accountServices.createAccount(account));
         return new ResponseEntity<>(successfullResponse, HttpStatus.OK);
     }
        CodeMessage failedResponse= new CodeMessage(404,"Error");
@@ -68,9 +68,9 @@ public class CustomerController {
     }
 
     @PutMapping("/customer/{id}")
-    public ResponseEntity<?> updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
+    public void updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
 
-        return customerService.updateCustomer(customer,id);
+         customerService.updateCustomer(customer,id);
     }
     @DeleteMapping("/customer/{id}")
     public void deleteCustomerById(@PathVariable Long id){
