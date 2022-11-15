@@ -21,8 +21,6 @@ public class BillService {
     AccountRepo accountRepo;
 
 
-
-
     public List<Bill> getAllBillsForASpecificAccount(Long id) {
         return billRepo.getAllBillsForASpecificAccount(id);
     }
@@ -54,10 +52,10 @@ public class BillService {
         return account != null;
     }
 
-    public Bill billCheck(Long billId){
+    public boolean billCheck(Long billId){
 
         Bill bill = billRepo.findById(billId).orElse(null);
-        return bill;
+        return bill != null;
     }
 
 }
