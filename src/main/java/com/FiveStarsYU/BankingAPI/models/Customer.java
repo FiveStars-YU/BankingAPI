@@ -1,9 +1,11 @@
 package com.FiveStarsYU.BankingAPI.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,14 +13,13 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId", nullable = false)
     private Long id;
 
     private String firstName;
 
     private String lastName;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private Set<Address> addresses;
 
     public Customer() {
@@ -52,7 +53,7 @@ public class Customer {
         return addresses;
     }
 
-    public void setAddresses(Set<Address> addresses) {
+    public void listOfAddresses(Set<Address> addresses) {
         this.addresses = addresses;
     }
 
