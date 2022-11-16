@@ -1,15 +1,9 @@
 package com.FiveStarsYU.BankingAPI.services;
 
 
-import com.FiveStarsYU.BankingAPI.models.Account;
-import com.FiveStarsYU.BankingAPI.models.Address;
 import com.FiveStarsYU.BankingAPI.models.Customer;
 import com.FiveStarsYU.BankingAPI.repository.CustomerRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,10 +31,9 @@ public class CustomerService {
         return listOfCustomers;
     }
 
-    public Optional<Customer> getCustomerByAccountId(Long account_id) {
+    public Optional<Customer> getCustomerByAccountId(Long accountId) {
 
-        Long customerId = accountServices.getAccountByAccountId(account_id).get().getId();
-        return customerRepository.findById(customerId);
+        return customerRepository.findById(accountId);
     }
 
     public Optional<Customer> getCustomerByCustomerId(Long id) {

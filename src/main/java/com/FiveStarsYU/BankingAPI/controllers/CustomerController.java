@@ -45,10 +45,10 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/accounts/{account_id}/customer")
-    public ResponseEntity<?> getCustomerByAccount(@PathVariable Long account_id) {
-        Customer p = customerService.getCustomerByAccountId(account_id).orElse(null);
-        if (p == null) {
+    @GetMapping("/accounts/{accountId}/customer")
+    public ResponseEntity<?> getCustomerByAccount(@PathVariable Long accountId) {
+        Optional<Customer> p = customerService.getCustomerByAccountId(accountId);
+        if (p.isEmpty()) {
             CodeMessage error = new CodeMessage(0, "error getting customer");
             return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
         }
