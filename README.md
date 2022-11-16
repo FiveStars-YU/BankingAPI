@@ -19,7 +19,7 @@ CREATE CUSTOMER ~ POST ~ http://localhost:8080/customers
     ]   
 }
 ```
-UPDATE CUSTOMER ~PUT~ http://localhost:8080/customers/1
+UPDATE CUSTOMER ~ PUT ~ http://localhost:8080/customers/1
 ```
 {   
     "id":1,
@@ -39,7 +39,7 @@ UPDATE CUSTOMER ~PUT~ http://localhost:8080/customers/1
 }
 ```
 
-CREATE ACCOUNT ~POST~ http://localhost:8080/customers/1/accounts
+CREATE ACCOUNT ~ POST ~ http://localhost:8080/customers/1/accounts
 ```
     "accountType": "CREDIT",
     "nickname": "string",
@@ -48,7 +48,7 @@ CREATE ACCOUNT ~POST~ http://localhost:8080/customers/1/accounts
     "customerId": 1
 ```
 
-UPDATE ACCOUNT ~PUT~ http://localhost:8080/accounts/1
+UPDATE ACCOUNT ~ PUT ~ http://localhost:8080/accounts/1
 ```
 {
         "id": 1,
@@ -60,7 +60,7 @@ UPDATE ACCOUNT ~PUT~ http://localhost:8080/accounts/1
         }
 ```
 
-CREATE BILL ~POST~ http://localhost:8080/accounts/1/bills
+CREATE BILL ~ POST ~ http://localhost:8080/accounts/1/bills
 ```
     "billStatus": "PENDING",
     "payee": "Walmart",
@@ -73,7 +73,7 @@ CREATE BILL ~POST~ http://localhost:8080/accounts/1/bills
     "account_id": 1
 ```
 
-UPDATE BILL ~PUT~ http://localhost:8080/bills/1
+UPDATE BILL ~ PUT ~ http://localhost:8080/bills/1
 ```
 {
     "id": 1,
@@ -87,8 +87,9 @@ UPDATE BILL ~PUT~ http://localhost:8080/bills/1
     "payment_amount": 40.5,
     "account_id": 1
 }
+```
 
-CREATE DEPOSIT ~POST~ http://localhost:8080/accounts/1/deposits
+CREATE DEPOSIT ~ POST ~ http://localhost:8080/accounts/1/deposits
 ```
 {
    "type": "deposit",
@@ -101,7 +102,7 @@ CREATE DEPOSIT ~POST~ http://localhost:8080/accounts/1/deposits
 }
 ```
 
-UPDATE DEPOSIT ~PUT~ http://localhost:8080/deposits/1
+UPDATE DEPOSIT ~ PUT ~ http://localhost:8080/deposits/1
 ```
 {
         "id": 1,
@@ -115,7 +116,7 @@ UPDATE DEPOSIT ~PUT~ http://localhost:8080/deposits/1
 }
 ```
 
-CREATE WITHDRAWAL ~POST~ http://localhost:8080/withdrawal/1/withdrawals
+CREATE WITHDRAWAL ~ POST ~ http://localhost:8080/withdrawal/1/withdrawals
 ```
 {
     "type": "Withdrawal",
@@ -128,7 +129,7 @@ CREATE WITHDRAWAL ~POST~ http://localhost:8080/withdrawal/1/withdrawals
 }
 ```
 
-UPDATE WITHDRAWAL ~PUT~ http://localhost:8080/withdrawals/1
+UPDATE WITHDRAWAL ~ PUT ~ http://localhost:8080/withdrawals/1
 ```
 {
        "id": 1,
