@@ -19,6 +19,14 @@ public class Account {
     public Account() {
     }
 
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,14 +65,6 @@ public class Account {
 
     public void setBalance(Double balance) {
         this.balance = balance;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     @Override

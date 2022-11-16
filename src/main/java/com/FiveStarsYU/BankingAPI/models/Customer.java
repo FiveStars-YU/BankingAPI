@@ -9,18 +9,21 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "customer_id")
     private Long id;
 
     private String firstName;
 
     private String lastName;
 
+    @Column(nullable = false)
     @OneToMany(cascade=CascadeType.ALL)
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
     public Customer() {
     }
@@ -49,11 +52,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public Set<Address> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void listOfAddresses(Set<Address> addresses) {
+    public void listOfAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 
