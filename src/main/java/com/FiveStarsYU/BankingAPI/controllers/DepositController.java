@@ -1,4 +1,5 @@
 package com.FiveStarsYU.BankingAPI.controllers;
+
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeData;
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeMessage;
 import com.FiveStarsYU.BankingAPI.errorhandling.CodeMessageData;
@@ -22,9 +23,11 @@ public class DepositController {
     private AccountServices accountServices;
 
 
- @PostMapping("/accounts/{customerId}/deposit")
+
+ 
+   @PostMapping("/accounts/{customerId}/deposit")
     public ResponseEntity<?> createDeposit(@PathVariable Long accountId, @RequestBody Deposit deposit){
-       depositService.createDeposit(accountId,deposit);
+        depositService.createDeposit(accountId,deposit);
         if(!accountServices.accountCheck(accountId)){
             CodeMessage noAccount = new CodeMessage(404,"Account doesn't exist");
             return new ResponseEntity<>(noAccount,HttpStatus.NOT_FOUND);
@@ -38,6 +41,7 @@ public class DepositController {
             return new ResponseEntity<>(successDepo,HttpStatus.CREATED);
         }
     }
+
 
     @GetMapping("/accounts/{accountId}/deposits")
     public ResponseEntity<?> getAllDepositsByAccountId(@PathVariable Long accountId){
@@ -76,7 +80,8 @@ public class DepositController {
         }
     }
 
-@PutMapping("/deposits/{accountId}/deposit")
+
+    @PutMapping("/deposits/{accountId}/deposit")
     public ResponseEntity<?> updateDeposit(@PathVariable Long depositId, @RequestBody Deposit deposit){
         if (!depositService.depositCheck(depositId)){
             CodeMessage updateError = new CodeMessage(404,"Deposit does not exist");
@@ -84,8 +89,7 @@ public class DepositController {
         }else{
             depositService.updateDeposit(depositId, deposit);
             CodeMessage successfullyUpdated = new CodeMessage(202,"Successfully update your deposit");
-            return new ResponseEntity<>(successfullyUpdated,HttpStatus.OK);
+            return new ResponseEntity<>(successfullyUpdated, HttpStatus.OK);
         }
     }
 }
-
