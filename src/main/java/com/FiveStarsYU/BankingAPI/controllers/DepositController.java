@@ -21,7 +21,7 @@ public class DepositController {
     @Autowired
     private AccountServices accountServices;
 
-    @PostMapping("/deposit/{customerId}/deposit")
+    @PostMapping("/deposits/{customerId}/deposit")
     public ResponseEntity<?> createDeposit(@PathVariable Long accountId, @RequestBody Deposit deposit){
        depositService.createDeposit(accountId,deposit);
         if(!accountServices.accountCheck(accountId)){
@@ -37,7 +37,7 @@ public class DepositController {
             return new ResponseEntity<>(successDepo,HttpStatus.CREATED);
         }
     }
-    @GetMapping("/deposit/{accountId}/deposit")
+    @GetMapping("/deposits/{accountId}/deposit")
     public ResponseEntity<?> getAllDepositsByAccountId(@PathVariable Long accountId){
         Iterable<Deposit> deposits = depositService.getAllDepositsByAccountId(accountId);
         if(deposits.iterator().hasNext()){
@@ -51,7 +51,7 @@ public class DepositController {
         CodeMessage errorReturn = new CodeMessage(404,"Deposit not found broke boy");
         return new ResponseEntity<>(errorReturn,HttpStatus.NOT_FOUND);
     }
-    @GetMapping("/deposit/{depositId}")
+    @GetMapping("/deposits/{depositId}")
     public ResponseEntity<?> getDepositById(@PathVariable Long depositId){
         ResponseEntity<?> deposit = depositService.getDepositByDepositId(depositId);
         if(!depositService.depositCheck(depositId)){
@@ -63,7 +63,7 @@ public class DepositController {
         }
 
     }
-    @DeleteMapping("/deposit/{depositId}")
+    @DeleteMapping("/deposits/{depositId}")
     public ResponseEntity<?> deleteDepositById(@PathVariable Long depositId){
         if (!depositService.depositCheck(depositId)){
             CodeMessage deleteError = new CodeMessage(404,"This id does not exist");
@@ -73,7 +73,7 @@ public class DepositController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-    @PutMapping("/deposit/{accountId}/deposit")
+    @PutMapping("/deposits/{accountId}/deposit")
     public ResponseEntity<?> updateDeposit(@PathVariable Long depositId, @RequestBody Deposit deposit){
         if (!depositService.depositCheck(depositId)){
             CodeMessage updateError = new CodeMessage(404,"Deposit does not exist");

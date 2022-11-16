@@ -45,7 +45,7 @@ public class WithdrawalController {
             return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
         }
     }
-    // Get All WIthdrawals for specific account
+    // Get All Withdrawals for specific account
     @GetMapping("/accounts/{accountId}/withdrawals")
     public ResponseEntity<?> getAllWithdrawalsByAccountId(@PathVariable Long accountId){
         Iterable<Withdrawal> withdrawals = withdrawalServices.getAllWithdrawalsByAccountId(accountId);

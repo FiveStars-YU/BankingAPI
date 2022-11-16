@@ -1,19 +1,26 @@
 package com.FiveStarsYU.BankingAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String streetNumber;
-    private String streetName;
-    private String city;
-    private String state;
-    private String zip;
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long id;
+    @Column(nullable = false)
+    public String streetNumber;
+    @Column(nullable = false)
+    public String streetName;
+    @Column(nullable = false)
+    public String city;
+    @Column(nullable = false)
+    public String state;
+    @Column(nullable = false)
+    public String zip;
 
 
     public Address() {
