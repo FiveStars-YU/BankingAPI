@@ -16,7 +16,6 @@ public class Account {
     private Double balance;
     private Long customerId;
 
-
     public Account() {
     }
 
@@ -67,7 +66,6 @@ public class Account {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
-
 
     @Override
     public String toString() {
