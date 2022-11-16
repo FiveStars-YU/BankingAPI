@@ -21,7 +21,7 @@ public class DepositController {
     @Autowired
     private AccountServices accountServices;
 
-    @PostMapping("/deposits/{customerId}/deposit")
+    @PostMapping("/accounts/{customerId}/deposit")
     public ResponseEntity<?> createDeposit(@PathVariable Long accountId, @RequestBody Deposit deposit){
        depositService.createDeposit(accountId,deposit);
         if(!accountServices.accountCheck(accountId)){
@@ -37,7 +37,7 @@ public class DepositController {
             return new ResponseEntity<>(successDepo,HttpStatus.CREATED);
         }
     }
-    @GetMapping("/deposits/{accountId}/deposit")
+    @GetMapping("/accounts/{accountId}/deposit")
     public ResponseEntity<?> getAllDepositsByAccountId(@PathVariable Long accountId){
         Iterable<Deposit> deposits = depositService.getAllDepositsByAccountId(accountId);
         if(deposits.iterator().hasNext()){
