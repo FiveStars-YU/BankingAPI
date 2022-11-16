@@ -24,7 +24,6 @@ public class CustomerController {
     @PostMapping("/customers")
     public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
 
-
     }
 
     @GetMapping("/customers")
@@ -40,33 +39,3 @@ public class CustomerController {
     }
 
 
-        }
-
-
-    }
-
-    @GetMapping("/customers/{id}")
-    public ResponseEntity<?> getCustomerById(@PathVariable Long id) {
-        Customer p = customerService.getCustomerByCustomerId(id).orElse(null);
-        if (p == null) {
-            CodeMessage error = new CodeMessage(404, "error fetching customer");
-            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-        }
-
-        CodeMessageData response = new CodeMessageData(200, "Success", p);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @PutMapping("/customers/{id}")
-    public ResponseEntity<?> updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
-        if (!customerService.customerCheck(id)) {
-            CodeMessage exception = new CodeMessage("Customer ID does not exist");
-            return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
-        }
-
-        customerService.updateCustomer(customer);
-        CodeMessage response = new CodeMessage(202, "Accepted customer modification");
-        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-    }
-
-}

@@ -16,7 +16,16 @@ public class Account {
     private Double balance;
     private Long customerId;
 
+
     public Account() {
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Long getId() {
@@ -59,13 +68,6 @@ public class Account {
         this.balance = balance;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
 
     @Override
     public String toString() {
