@@ -41,11 +41,13 @@ UPDATE CUSTOMER ~ PUT ~ http://localhost:8080/customers/1
 
 CREATE ACCOUNT ~ POST ~ http://localhost:8080/customers/1/accounts
 ```
+{
     "accountType": "CREDIT",
     "nickname": "string",
     "rewards": 0,
     "balance": 0.0,
     "customerId": 1
+}
 ```
 
 UPDATE ACCOUNT ~ PUT ~ http://localhost:8080/accounts/1
